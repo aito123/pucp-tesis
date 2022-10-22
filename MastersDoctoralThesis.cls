@@ -222,6 +222,8 @@
 \NewDocumentCommand{\faculty}{m}{\newcommand{\facname}{#1}}
 \NewDocumentCommand{\subject}{m}{\newcommand{\subjectname}{#1}}
 \NewDocumentCommand{\keywords}{m}{\newcommand{\keywordnames}{#1}}
+\NewDocumentCommand{\city}{m}{\newcommand{\cityname}{#1}}
+\NewDocumentCommand{\dateyear}{m}{\newcommand{\dateyearname}{#1}}
 
 \newcommand{\checktoopen}{% New command to move content to the next page which prints to the next odd page if twosided mode is active  
 	\if@openright\cleardoublepage\else\clearpage\fi

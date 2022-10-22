@@ -1,11 +1,11 @@
-title: quarto-thesis
-author: Eli Holmes
+title: pucp-tesis
+author: Santiago Sotelo
 version: 0.1.0
 contributes:
   format:
     pdf:
       documentclass: MastersDoctoralThesis
-      classoption: ["11pt", "spanish", "singlespacing", "headsepline"]
+      classoption: ["11pt", "oneside", "spanish", "singlespacing", "headsepline"]
       format-resources:
         - MastersDoctoralThesis.cls
       template-partials: 

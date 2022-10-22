@@ -8,6 +8,14 @@
 \subject{} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
 \keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
 $if(book.department)$
+\city{$book.city$} % Your city's name, this is used in the title page and abstract, print it elsewhere with \cityname
+$else$\city{}
+$endif$
+$if(book.department)$
+\dateyear{$book.dateyear$} % Your year, this is used in the title page and abstract, print it elsewhere with \dateyearname
+$else$\dateyear{}
+$endif$
+$if(book.department)$
 \university{$book.university$} % Your university's name, this is used in the title page and abstract, print it elsewhere with \univname
 $else$\university{}
 $endif$

@@ -6,17 +6,20 @@ project:
 book:
   title: A doctoral thesis title
   author:
-    name: Jane Doe
-    url: http://www.janedoe.com
+    name: Sotelo Galindo, Santiago Salvador
+    url: http://www.google.com
   supervisor: 
-    name: Dr. Ashok Kunil
-    url: http://www.ashok.com
-  degree-name: Doctor of Philosophy
-  cover-image: images/logo.png # ?
-  university: University of Ottawa
+    name: Sulmont, David
+    url: http://www.google.com
+  degree-name: Licenciado en Sociología
+  cover-image: D:/OneDrive - Universidad del Pacífico/quarto scripts/pucp-tesis/images/logo.pdf # ? no funciona
+  university: Pontificia Universidad Católica del Perú
   department: Department of Mathematics
   group: Informatics Program # ?
-  faculty: Applied Math Group # ?
+  faculty: Facultad de Ciencias Sociales # ?
+  dateyear: 2022
+  city: Lima
+  keywords: ["capital social", "desigualdad"]
 
   declaration: "Frontmatter/declaration.tex"
   quotation:
@@ -38,11 +41,11 @@ book:
   constants: "Frontmatter/constants.tex"
   chapters:
     - index.qmd
-    - Chapters/Chapter2.qmd
-    - Chapters/Chapter3.qmd
-    - references.qmd
-  appendices:
-    - Appendices/AppendixA.qmd
+  #   - Chapters/Chapter2.qmd
+  #   - Chapters/Chapter3.qmd
+  #   - references.qmd
+  # appendices:
+  #   - Appendices/AppendixA.qmd
 
 bibliography: [example.bib]
 

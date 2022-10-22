@@ -40,16 +40,33 @@ $endif$
  
 \vfill
 
-\large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-\textit{in the}\\[0.4cm]
+\MakeUppercase{\facname}
+
+\large {Tesis para obtener el título profesional de \degreename}{ presentado por:}\\[0.3cm] % University requirement text
+
+$if(book.author.url)$
+\href{$book.author.url$}{\authorname} % Author name - remove the \href bracket to remove the link
+$else$
+\authorname
+$endif$
+
+{Asesor(es):}\\[0.4cm]
+$if(book.supervisor.url)$%
+\href{$book.supervisor.url$}{\supname} % Supervisor name - remove the \href bracket to remove the link  
+$else$%
+\supname
+$endif$
+
 \groupname\\
 \deptname\\[2cm] % Research group name and department name
  
 \vfill
 
-$if(date)$
-{\large $date$}\\[4cm] % Date
-$endif$
+{\cityname}{, }{\dateyearname}
+
+% $if(year)$
+% {\large \yearname}\\[4cm] % Date year
+% $endif$
 
 $if(cover-image)$
 \includegraphics{$cover-image$} % University/department logo
