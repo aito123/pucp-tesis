@@ -25,6 +25,6 @@ contributes:
         - top=1.5cm
         - bottom=1.5cm
       colorlinks: true
-      citecolor: magenta
-      linkcolor: blue
-      urlcolor: red
+      citecolor: blue
+      linkcolor: black
+      urlcolor: blue
