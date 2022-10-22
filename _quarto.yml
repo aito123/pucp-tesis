@@ -50,6 +50,8 @@ execute:
   echo: false
   code-overflow: wrap
 
+lang: es
+
 format:
   quarto-thesis-pdf:
     toc-depth: 2
