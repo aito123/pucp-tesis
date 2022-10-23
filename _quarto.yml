@@ -13,7 +13,7 @@ book:
     url: http://www.google.com
   degree-name: Licenciado en Sociología
   # cover-image: D:/OneDrive - Universidad del Pacífico/quarto scripts/pucp-tesis/images/logo.pdf # ? no funciona
-  university: Pontificia Universidad Católica del Perú
+  university: Pontificia Universidad Católica del Perú #quitar esto
   department: Department of Mathematics #?
   group: Informatics Program # ?
   faculty: Facultad de Ciencias Sociales
