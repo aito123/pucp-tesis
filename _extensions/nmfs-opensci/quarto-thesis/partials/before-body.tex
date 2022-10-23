@@ -7,13 +7,14 @@
 %----------------------------------------------------------------------------------------
 
 \begin{titlepage}
+\DraftwatermarkOptions{stamp=false} % quitarle la marca de agua a la primera página
 \begin{center}
 
 \vspace*{.06\textheight}
 {\MakeUppercase{\textbf{PONTIFICIA UNIVERSIDAD \\ CATÓLICA DEL PERÚ}}\par}\vspace{0.25cm} % University name
 \MakeUppercase{\textbf{\facname}}\vspace{0.5cm} % Thesis type
 
-\includegraphics[width=7cm]{pucp_escudo}\vspace{0.5cm}
+\includegraphics[width=6cm]{pucp_escudo}\vspace{0.5cm}
 
 {\textbf{\ttitle}\par}\vspace{0.4cm} % Thesis title
 
@@ -37,23 +38,6 @@ $endif$
 \vfill
 \end{center}
 \end{titlepage}
-
-%----------------------------------------------------------------------------------------
-%	DECLARATION PAGE
-%----------------------------------------------------------------------------------------
-$if(book.declaration)$
-\begin{declaration}
-\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-$if(book.declaration.text)$
-$book.declaration.text$
-$else$
-\input{"$book.declaration$"}
-$endif$
-
-\end{declaration}
-
-\cleardoublepage
-$endif$
 
 $if(book.quotation)$
 %----------------------------------------------------------------------------------------

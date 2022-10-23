@@ -13,15 +13,14 @@ book:
     url: http://www.google.com
   degree-name: Licenciado en Sociología
   # cover-image: D:/OneDrive - Universidad del Pacífico/quarto scripts/pucp-tesis/images/logo.pdf # ? no funciona
-  university: Pontificia Universidad Católica del Perú #quitar esto
+  # university: Pontificia Universidad Católica del Perú #quitar esto
   department: Department of Mathematics #?
   group: Informatics Program # ?
   faculty: Facultad de Ciencias Sociales
-  dateyear: 2022
   city: Lima
+  dateyear: 2022
   keywords: ["capital social", "desigualdad"]
 
-  declaration: "Frontmatter/declaration.tex"
   quotation:
     text: | 
       Thanks to my solid academic training, today I can write hundreds of words 
@@ -41,11 +40,11 @@ book:
   constants: "Frontmatter/constants.tex"
   chapters:
     - index.qmd
-  #   - Chapters/Chapter2.qmd
-  #   - Chapters/Chapter3.qmd
-  #   - references.qmd
-  # appendices:
-  #   - Appendices/AppendixA.qmd
+    - Chapters/Chapter2.qmd
+    - Chapters/Chapter3.qmd
+    - references.qmd
+  appendices:
+    - Appendices/AppendixA.qmd
 
 bibliography: [example.bib]
 

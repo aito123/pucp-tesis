@@ -198,6 +198,11 @@
 \RequirePackage{graphicx} % Required to include images
 \graphicspath{{Figures/}{./}} % Specifies where to look for included images
 
+\RequirePackage{draftwatermark}
+\SetWatermarkText{\includegraphics{pucp_escudo_gris_2}}
+\SetWatermarkAngle{0}
+\SetWatermarkScale{0.7}
+
 \RequirePackage{booktabs} % Required for better table rules
 
 \RequirePackage{fontspec}
@@ -418,26 +423,6 @@ KOMA-script documentation for details.}]{fancyhdr}
 	{
 		\vfil\vfil\null
 	}
-}
-
-%----------------------------------------------------------------------------------------
-%	DECLARATION PAGE DESIGN
-%----------------------------------------------------------------------------------------
-
-\newcommand{\authorshipname}{Declaración de autoría}
-
-\ifbool{consistentlayout}{
-	\DeclareDocumentEnvironment{declaration}{}{
-		\addchap*{\authorshipname}
-		}{}%
-}{
-	\DeclareDocumentEnvironment{declaration}{}{
-		\checktoopen
-		\tttypeout{\authorshipname}
-		\thispagestyle{plain}
-		\null\vfil
-		{\noindent\huge\bfseries\authorshipname\par\vspace{10pt}}
-	}{}
 }
 
 %----------------------------------------------------------------------------------------
