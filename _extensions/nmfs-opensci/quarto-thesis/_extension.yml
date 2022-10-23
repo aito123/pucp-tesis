@@ -20,10 +20,12 @@ contributes:
       geometry: 
         - paper=a4paper
         - inner=2.5cm
-        - outer=3.8cm
-        - bindingoffset=.5cm
-        - top=1.5cm
-        - bottom=1.5cm
+        - outer=2.5cm
+        # - bindingoffset=.5cm #Themacroaddsthespecifiedspacetotheinnermargin.
+        - top=2.5cm
+        - bottom=2.5cm
+        - showframe
+        - showcrop
       colorlinks: true
       citecolor: blue
       linkcolor: black
