@@ -4,7 +4,7 @@ project:
   output-file: "Thesis"
 
 book:
-  title: A doctoral thesis title
+  title: El efecto de la pandemia del COVID-19 en las condiciones de vida de las familias de trabajadores del sector informal en el Perú urbano
   author:
     name: Sotelo Galindo, Santiago Salvador
     url: http://www.google.com
@@ -12,11 +12,11 @@ book:
     name: Sulmont, David
     url: http://www.google.com
   degree-name: Licenciado en Sociología
-  cover-image: D:/OneDrive - Universidad del Pacífico/quarto scripts/pucp-tesis/images/logo.pdf # ? no funciona
+  # cover-image: D:/OneDrive - Universidad del Pacífico/quarto scripts/pucp-tesis/images/logo.pdf # ? no funciona
   university: Pontificia Universidad Católica del Perú
-  department: Department of Mathematics
+  department: Department of Mathematics #?
   group: Informatics Program # ?
-  faculty: Facultad de Ciencias Sociales # ?
+  faculty: Facultad de Ciencias Sociales
   dateyear: 2022
   city: Lima
   keywords: ["capital social", "desigualdad"]

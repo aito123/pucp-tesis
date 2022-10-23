@@ -199,6 +199,8 @@
 
 \RequirePackage{booktabs} % Required for better table rules
 
+\RequirePackage{fontspec}
+
 \RequirePackage{caption} % Required for customising the captions
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=50pt}
 
