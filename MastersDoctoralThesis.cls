@@ -56,26 +56,57 @@
 \LoadClass{\baseclass}
 
 %  Simple interface for the user  to customize the chapter titles 
-\ProvideDocumentCommand{\abovechapterskip}{}{\vspace*{20pt}}
-\ProvideDocumentCommand{\chapterbelowskip}{}{\vspace*{40pt}}
-\ProvideDocumentCommand{\chapterinbetweenskip}{}{\vspace*{20pt}}
+\ProvideDocumentCommand{\abovechapterskip}{}{\vspace*{0cm}}
+\ProvideDocumentCommand{\chapterbelowskip}{}{\vspace*{0.25cm}}
+\ProvideDocumentCommand{\chapterinbetweenskip}{}{\vspace*{0cm}}
 \ProvideDocumentCommand{\autodot}{}{}
 \ProvideDocumentCommand{\mdtChapapp}{}{}
-\ProvideDocumentCommand{\chapteralign}{}{\raggedright}
-\ProvideDocumentCommand{\chapterfont}{}{\Huge\bfseries}
-\ProvideDocumentCommand{\chapterprefixfont}{}{\LARGE\bfseries}
+\ProvideDocumentCommand{\chapteralign}{}{\centering} % align indice de contenidos
+% \ProvideDocumentCommand{\chapterfont}{}{\Huge\bfseries} %cambiar
+\ProvideDocumentCommand{\chapterfont}{}{\normalfont \underline} %  font indice de contenidos
+\ProvideDocumentCommand{\chapterprefixfont}{}{\normalfont \underline}
 
+% \ProvideDocumentCommand{\chapterprefixfont}{}{
+%   \begin{center}
+% 			{\normalsize\underline\par}
+% 	\end{center}
+% }
+
+%
+% \newcommand{\abstractname}{Resumen}
+% 
+% \ifbool{consistentlayout}{
+% 	\DeclareDocumentEnvironment{abstract}{}{%
+% 		\tttypeout{\abstractname}
+% 		\addchap*{\abstractname}
+% 	}
+% }
+% {
+% 	\DeclareDocumentEnvironment{abstract}{}{%
+% 		\checktoopen
+% 		\tttypeout{\abstractname}
+% 		\thispagestyle{plain}
+% 		\begin{center}
+% 			{\normalsize\underline{\abstractname} \par}
+% 			\bigskip
+% 		\end{center}
+% 	}
+% 	{
+% 		\vfil\vfil\null
+% 	}
+% }
+
+
+%
+
+% chapter head
 \DeclareDocumentCommand{\@makechapterhead}{ m }{%
 	\abovechapterskip
 	{\parindent \z@ \chapteralign \normalfont
 		\ifnum \c@secnumdepth >\m@ne
 		\if@mainmatter
 		\ifbool{chapteroneline}{%
-			\chapterfont \mdtChapapp\thechapter\autodot\enspace
-		}{%
-			\chapterprefixfont \@chapapp\space \thechapter
-			\par\nobreak
-			\chapterinbetweenskip
+			\chapterfont \mdtChapapp\thechapter%\autodot\enspace
 		}%
 		\fi
 		\fi
@@ -156,6 +187,8 @@
 \patchcmd{\listoffigures}{\MakeUppercase}{\MakeMarkcase}{}{}
 \patchcmd{\listoftables}{\MakeUppercase}{\MakeMarkcase}{}{}
 \patchcmd{\listoftables}{\MakeUppercase}{\MakeMarkcase}{}{}
+
+% esto tiene que ver con el espaciado
 
 % If the option `nolistspacing' is given, the spacing in the different lists is reduced to single spacing. This option is only useful, if the spacing of the document has been changed to onehalfspacing or doublespacing.
 \ifbool{nolistspace}{
@@ -248,13 +281,46 @@
 	\addcontentsline{toc}{chapter}{#1}%
 }
 
+% \ProvideDocumentCommand{\chapteralign}{}{\centering} % align indice de contenidos
+% % \ProvideDocumentCommand{\chapterfont}{}{\Huge\bfseries}
+% \ProvideDocumentCommand{\chapterfont}{}{\normalfont \underline} %  font indice de contenidos
+% \ProvideDocumentCommand{\chapterprefixfont}{}{\normalfont \underline}
+
+
+% esto controla el tamaño de los headers
+\def\sectionfont{\fontsize{12}{12}\selectfont\underline}%
+\def\subsectionfont{\fontsize{12}{12}\selectfont\underline}%
+\def\subsubsectionfont{\fontsize{12}{12}\selectfont\underline}%
+\def\paragraphfont{\fontsize{12}{12}\selectfont}%
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                     {-26pt \@plus-4pt \@minus-2pt}%
+                                     {12pt}%
+                                     {\sectionfont}}%
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-26pt \@plus-4pt \@minus-2pt}%
+                                     {12pt}%
+                                     {\subsectionfont}}%
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-26pt \@plus-4pt \@minus-2pt}%
+                                     {12pt}%
+                                     {\subsubsectionfont}}%
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\parindent \z@}% ver lo de parindent para la sangria
+                                     {12pt}%
+                                     {12pt}%
+                                     {\paragraphfont}}%
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+                                      {12pt}%
+                                      {12pt}%
+                                      {\reset@font\normalsize}}%
+
 %----------------------------------------------------------------------------------------
 %	COLOURS
 %----------------------------------------------------------------------------------------
 
 \usepackage{xcolor} % Required for specifying custom colours
 
-\colorlet{mdtRed}{red!50!black}
+\colorlet{mdtRed}{red!50!black} %borrar eventualmente
 
 
 
@@ -275,8 +341,8 @@
 \RequirePackage[markcase=used]{scrlayer-scrpage}
 \providepairofpagestyles{thesisSimple}{%
 	\clearpairofpagestyles%
-	\automark[chapter]{chapter}
-	\ihead{\headmark}% Inner header
+	% \automark[chapter]{chapter} % el header de los capítulos
+	% \ihead{\headmark}% Inner header
 	\ohead[\pagemark]{\pagemark}% Outer header
 }
 \ifoot{}% Inner footer
@@ -290,10 +356,10 @@
 	\ifoot[\today]{\today}
 }
 \pagestyle{thesis}
-\ifbool{headsepline}{\KOMAoption{headsepline}{true}}{}
+\ifbool{headsepline}{\KOMAoption{headsepline}{false}}{} % esta era la linea del header
 \PreventPackageFromLoading[\ClassError{\classname}{Package `fancyhdr' is
-incompatible\MessageBreak with this class}{The pagesyles are defined 
-	using package `scrlayer-scrpage', please consult the\MessageBreak 
+incompatible\MessageBreak with this class}{The pagesyles are defined
+	using package `scrlayer-scrpage', please consult the\MessageBreak
 KOMA-script documentation for details.}]{fancyhdr}
 
 
@@ -312,6 +378,8 @@ KOMA-script documentation for details.}]{fancyhdr}
 	\newpage
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi%
 }
+
+% \addtokomafont{chapter}{\Huge} no funciona
 
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS PAGE DESIGN
@@ -332,79 +400,33 @@ KOMA-script documentation for details.}]{fancyhdr}
 %	ABSTRACT PAGE DESIGN
 %----------------------------------------------------------------------------------------
 
-\DeclareDocumentCommand{\abstractauthorfont}{}{}
-\DeclareDocumentCommand{\abstracttitlefont}{}{}
-\newcommand{\byname}{by}
 \newcommand{\abstractname}{Resumen}
-\providecaptionname{german,ngerman,austrian,naustrian}{\byname}{von}
-\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\byname}{by}
+
 \ifbool{consistentlayout}{
-	\DeclareDocumentEnvironment{abstract}{ O{} }{%
-		\addchap*{\abstractname}%
-		{\chapteralign\normalsize\abstractauthorfont \authorname \par}% Author name
-		\vspace{\baselineskip}
-		{\chapteralign\parbox{.7\linewidth}{\chapteralign\normalsize\itshape\abstracttitlefont\@title}\par}% Thesis title
-		\bigskip\noindent\ignorespaces
-	}%
-	{}%end alt-abstract
-}{%
-	\DeclareDocumentEnvironment{abstract}{ O{\null\vfill} }{
+	\DeclareDocumentEnvironment{abstract}{}{%
+		\tttypeout{\abstractname}
+		\addchap*{\abstractname}
+	}
+}
+{
+	\DeclareDocumentEnvironment{abstract}{}{%
 		\checktoopen
 		\tttypeout{\abstractname}
-		#1%added to be able to have abstract more than one page long
 		\thispagestyle{plain}
 		\begin{center}
-			{\normalsize \MakeUppercase{\univname} \par}% University name in capitals
-			\bigskip
-			{\huge\textit{\abstractname} \par}
-			\bigskip
-			{\normalsize \facname \par}% Faculty name
-			{\normalsize \deptname \par}% Department name
-			\bigskip
-			{\normalsize \degreename\par}% Degree name
-			\bigskip
-			{\normalsize\bfseries \@title \par}% Thesis title
-			\medskip
-			{\normalsize \byname{} \authorname \par}% Author name
+			{\normalsize\underline{\abstractname} \par}
 			\bigskip
 		\end{center}
 	}
 	{
-		\vfill\null
+		\vfil\vfil\null
 	}
-}
-
-\DeclareDocumentEnvironment{extraAbstract}{ O{\null\vfill} }{
-	\checktoopen
-	\tttypeout{\abstractname}
-	#1%added to be able to have abstract more than one page long
-	\thispagestyle{empty}
-	\begin{center}
-		{\normalsize \MakeUppercase{\univname} \par}% University name in capitals
-		\bigskip
-		{\huge\textit{\abstractname} \par}
-		\bigskip
-		{\normalsize \facname \par}% Faculty name
-		{\normalsize \deptname \par}% Department name
-		\bigskip
-		{\normalsize \degreename\par}% Degree name
-		\bigskip
-		{\normalsize\bfseries \@title \par}% Thesis title
-		\medskip
-		{\normalsize \byname{} \authorname \par}% Author name
-		\bigskip
-	\end{center}
-}
-{
-	\vfill\null
 }
 
 %----------------------------------------------------------------------------------------
 %	ACKNOWLEDGEMENTS PAGE DESIGN
 %----------------------------------------------------------------------------------------
 
-\usepackage{xcolor}
-\colorlet{mdtRed}{red!50!black}
 \newcommand{\acknowledgementname}{Agradecimientos}
 
 \ifbool{consistentlayout}{
@@ -418,7 +440,10 @@ KOMA-script documentation for details.}]{fancyhdr}
 		\checktoopen
 		\tttypeout{\acknowledgementname}
 		\thispagestyle{plain}
-		\begin{center}{\huge\textit{\acknowledgementname}\par}\end{center}
+		\begin{center}
+		  {\normalsize\underline{\acknowledgementname} \par}
+		  \bigskip
+		\end{center}
 	}
 	{
 		\vfil\vfil\null
@@ -443,11 +468,10 @@ KOMA-script documentation for details.}]{fancyhdr}
 		\tttypeout{Dedicatory}
 		\null\vfil
 		\thispagestyle{plain}
-		\begin{center}{\Large\slshape #1}\end{center}
+		\begin{flushright}{\normalsize #1}\end{flushright}
 		\vfil\null
 	}
 }
-
 
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS PAGE DESIGN

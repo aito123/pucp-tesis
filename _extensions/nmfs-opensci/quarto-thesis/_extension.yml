@@ -4,8 +4,9 @@ version: 0.1.0
 contributes:
   format:
     pdf:
+      keep-tex: true
       documentclass: MastersDoctoralThesis
-      classoption: ["12pt", "oneside", "spanish", "singlespacing", "headsepline"]
+      classoption: ["12pt", "oneside", "spanish", "doublespacing", "headsepline"]
       format-resources:
         - MastersDoctoralThesis.cls
       template-partials: 
@@ -23,9 +24,11 @@ contributes:
         # - bindingoffset=.5cm #Themacroaddsthespecifiedspacetotheinnermargin.
         - top=2.5cm
         - bottom=2.5cm
-        - showframe
-        - showcrop
+        # - showframe # para marcos
+        # - showcrop # para marcos
       colorlinks: true
       citecolor: blue
       linkcolor: black
       urlcolor: blue
+      fig-cap-location: top
+      csl: https://www.zotero.org/styles/apa

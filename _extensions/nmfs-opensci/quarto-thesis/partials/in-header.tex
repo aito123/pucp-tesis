@@ -5,7 +5,20 @@
 \usepackage{fontspec}
 \setmainfont{Arial}
 
-\usepackage[backend=bibtex, style=authoryear, natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\usepackage[backend=bibtex, style=authoryear, natbib=true]{biblatex}
+% \RequirePackage{bibspacing}
+% \setlength\bibitemsep{\baselineskip} % un enter entre cada fuente
+
+% \newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
+% \newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+% \let\oldthebibliography\thebibliography
+% \renewcommand\thebibliography[1]{%
+%   \oldthebibliography{#1}%
+%   \setlength{\parskip}{\bibitemsep}%
+%   \setlength{\itemsep}{\bibparskip}%
+% }
+
+% Use the bibtex backend with the authoryear citation style (which resembles APA)
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
@@ -20,7 +33,8 @@
 }
 
 \raggedbottom
-
+% \setlength\bibitemsep{\baselineskip}
+% \printbibliography
 \AtBeginDocument{
 \hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
 \hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name

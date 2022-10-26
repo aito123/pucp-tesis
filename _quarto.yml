@@ -6,8 +6,8 @@ project:
 book:
   title: El efecto de la pandemia del COVID-19 en las condiciones de vida de las familias de trabajadores del sector informal en el Perú urbano
   author:
-    name: Sotelo Galindo, Santiago Salvador
-    url: http://www.google.com
+    - name: Sotelo Galindo, Santiago Salvador
+      url: http://www.google.com
   supervisor: 
     name: Sulmont, David
     url: http://www.google.com
@@ -19,14 +19,8 @@ book:
   faculty: Facultad de Ciencias Sociales
   city: Lima
   dateyear: 2022
-  keywords: ["capital social", "desigualdad"]
+  keywords: capital social, desigualdad
 
-  quotation:
-    text: | 
-      Thanks to my solid academic training, today I can write hundreds of words 
-      on virtually any topic without possessing a shred of information, which 
-      is how I got a good job in journalism.
-    attribution: Dave Barry
   acknowledgements: "Frontmatter/acknowledgements.tex"
   abstract: | 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis 
@@ -34,6 +28,7 @@ book:
     sem. Etiam laoreet, quam ac mollis congue, arcu leo dictum neque, nec 
     euismod sem enim luctus odio. Donec condimentum tortor sit amet mollis 
     volutpat.
+    
   abbreviations: "Frontmatter/abbreviations.tex"
   symbols: "Frontmatter/symbols.tex"
   dedication: "Frontmatter/dedication.tex"
@@ -47,6 +42,16 @@ book:
     - Appendices/AppendixA.qmd
 
 bibliography: [example.bib]
+# biblio-style: |
+#   \newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
+#   \newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+#   \let\oldthebibliography\thebibliography
+#   \renewcommand\thebibliography[1]{%
+#     \oldthebibliography{#1}%
+#     \setlength{\parskip}{\bibitemsep}%
+#     \setlength{\itemsep}{\bibparskip}%
+#   }
+
 
 execute:
   echo: false

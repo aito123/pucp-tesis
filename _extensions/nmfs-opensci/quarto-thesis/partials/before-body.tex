@@ -1,7 +1,5 @@
-\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
-
-\pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
-
+\pagestyle{empty} % Default to the plain heading style until the thesis style is called for the body content
+\pagenumbering{gobble} % funcionó para quitarle la numeración de página
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -39,48 +37,47 @@ $endif$
 \end{center}
 \end{titlepage}
 
-$if(book.quotation)$
 %----------------------------------------------------------------------------------------
-%	QUOTATION PAGE
+%	DEDICATION
 %----------------------------------------------------------------------------------------
+$if(book.dedication)$
 
-\vspace*{0.2\textheight}
-
-$if(book.quotation.text)$
-\noindent"{\itshape $book.quotation.text$}"\bigbreak
-
-\hfill $book.quotation.attribution$
-$else$
-\input{"$book.quotation$"}
-$endif$
+\dedicatory{\input{"$book.dedication$"}} 
+\newpage
 
 $endif$
 
-$if(abstract)$
-%----------------------------------------------------------------------------------------
-%	ABSTRACT PAGE
-%----------------------------------------------------------------------------------------
-
-\begin{abstract}
-\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-$abstract$
-\end{abstract}
-
-$endif$
-
-$if(book.acknowledgements)$
 %----------------------------------------------------------------------------------------
 %	ACKNOWLEDGEMENTS
 %----------------------------------------------------------------------------------------
+$if(book.acknowledgements)$
 
 \begin{acknowledgements}
+\begin{singlespace}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
 $if(book.acknowledgements.text)$
 $book.acknowledgements.text$
 $else$
 \input{"$book.acknowledgements$"}
 $endif$
+\end{singlespace}
 \end{acknowledgements}
+
+$endif$
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+$if(abstract)$
+
+\begin{abstract}
+\begin{singlespace}
+\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+{$abstract$}\vspace{0.3cm}
+
+{Palabras clave: }{\keywordnames}% palabras clave
+\end{singlespace}
+\end{abstract}
 
 $endif$
 
@@ -92,39 +89,31 @@ $endif$
 
 \listoftables % Prints the list of tables
 
-$if(book.abbreviations)$
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
+$if(book.abbreviations)$
 
 \input{"$book.abbreviations$"}
 
 $endif$
 
-$if(book.constants)$
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
 %----------------------------------------------------------------------------------------
+$if(book.constants)$
 
 \input{"$book.constants$"}
 
 $endif$
 
-$if(book.symbols)$
+
 %----------------------------------------------------------------------------------------
 %	SYMBOLS
 %----------------------------------------------------------------------------------------
+$if(book.symbols)$
 
 \input{"$book.symbols$"}
-
-$endif$
-
-$if(book.dedication)$
-%----------------------------------------------------------------------------------------
-%	DEDICATION
-%----------------------------------------------------------------------------------------
-
-\dedicatory{\input{"$book.dedication$"}} 
 
 $endif$
 
@@ -132,6 +121,8 @@ $endif$
 %	THESIS CONTENT - CHAPTERS
 %----------------------------------------------------------------------------------------
 
-\mainmatter % Begin numeric (1,2,3...) page numbering
+\mainmatter
 
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
+
+
