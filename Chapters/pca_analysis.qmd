@@ -1,0 +1,58 @@
+# PCA analysis {#sec-pca}
+
+```{r}
+here::i_am("Chapters/pca_analysis.qmd")
+```
+
+```{r}
+#| label: importar los necesarios
+
+pacman::p_load(here,tidyverse,janitor,glue,haven,rio,sjlabelled,gt,gtsummary,flextable,survey,srvyr,ggpubr,scales,officer, Hmisc, patchwork, ggtext, gdtools)
+
+```
+
+```{r}
+#| label: data
+
+cd <- "D:/OneDrive - Universidad del Pacífico/quarto_blog/posts/"
+
+base1<-read_sav(glue(cd, "bases_datos/enaho_19_20_21.sav"))
+base2<-read_sav(glue(cd, "bases_datos/enaho_19_20_21_total.sav"))
+
+contagiados<- read_csv("C:/Users/aitos/Downloads/contagiados_diarios.csv") %>% 
+  clean_names() %>% 
+  mutate(
+    total = rowSums(select(., ag, pcr, pr))
+  ) %>% 
+  separate(fecha_resultado, into = c("ano", "mes", "dia"), sep = "-")
+
+contagiados2<-
+  contagiados %>% 
+  group_by(ano, mes) %>% 
+  summarise(total = sum(total)) %>% 
+  unite("meses", c(ano, mes), sep = "-")
+
+```
+
+```{r}
+contagiados2 %>% 
+  ggplot(aes(x = meses, y = total)) +
+  geom_col() +
+  theme_pubclean() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  ggtitle("Pruebas positivas histórico")
+
+```
+
+peligrosidad y estandarización.
+
+Habitantes ?
+
+mes efecto covid, 
+
+el panel
+
+indicador de informalidad
+
+Se puede no controlar por departamento
+

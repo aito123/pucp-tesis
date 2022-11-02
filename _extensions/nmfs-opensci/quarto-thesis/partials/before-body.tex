@@ -8,7 +8,7 @@
 \DraftwatermarkOptions{stamp=false} % quitarle la marca de agua a la primera página
 \begin{center}
 
-\vspace*{.06\textheight}
+% \vspace*{.06\textheight}
 {\MakeUppercase{\textbf{PONTIFICIA UNIVERSIDAD \\ CATÓLICA DEL PERÚ}}\par}\vspace{0.25cm} % University name
 \MakeUppercase{\textbf{\facname}}\vspace{0.5cm} % Thesis type
 
@@ -54,6 +54,9 @@ $if(book.acknowledgements)$
 
 \begin{acknowledgements}
 \begin{singlespace}
+
+\setlength\parindent{0pt}
+
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
 $if(book.acknowledgements.text)$
 $book.acknowledgements.text$
@@ -72,6 +75,9 @@ $if(abstract)$
 
 \begin{abstract}
 \begin{singlespace}
+
+\setlength\parindent{0pt}
+
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 {$abstract$}\vspace{0.3cm}
 
@@ -83,12 +89,33 @@ $endif$
 
 % $--	LIST OF CONTENTS/FIGURES/TABLES PAGES
 
+% para poner en formato la lista de figuras y lista de tablas
+
+% \makeatletter
+% \patchcmd{\@caption}{\csname the#1\endcsname}{\csname fnum@#1\endcsname:}{}{}
+% \renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{4.5em}} % default for 3rd arg: 2.3em
+% \let\l@table\l@figure % as in article.cls
+% \makeatother
+
+% \begin{document}
 \tableofcontents % Prints the main table of contents
 
 \listoffigures % Prints the list of figures
 
-\listoftables % Prints the list of tables
+% {%
+% \let\oldnumberline\numberline%
+% \renewcommand{\numberline}{\figurename~\oldnumberline}%
+% \listoffigures%
+% }
+% 
+% {%
+% \let\oldnumberline\numberline%
+% \renewcommand{\numberline}{Tabla~\oldnumberline}%
+% \listoftables%
+% }
 
+\listoftables % Prints the list of tables
+% \end{document}
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
@@ -125,4 +152,9 @@ $endif$
 
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
 
+\sloppy %funcionó para los links que no se salgan del párrafo.
 
+% \setlength{\parindent}{8cm}
+
+% \RedeclareSectionCommand[beforeskip=-10pt plus -2pt minus -1pt,afterskip=1sp plus -1sp minus 1sp,font=\normalfont\itshape]{paragraph}
+% \RedeclareSectionCommand[beforeskip=-10pt plus -2pt minus -1pt,afterskip=1sp plus -1sp minus 1sp,font=\normalfont\scshape,indent=0pt]{subparagraph}

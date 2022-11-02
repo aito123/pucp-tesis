@@ -63,7 +63,7 @@
 \ProvideDocumentCommand{\mdtChapapp}{}{}
 \ProvideDocumentCommand{\chapteralign}{}{\centering} % align indice de contenidos
 % \ProvideDocumentCommand{\chapterfont}{}{\Huge\bfseries} %cambiar
-\ProvideDocumentCommand{\chapterfont}{}{\normalfont \underline} %  font indice de contenidos
+\ProvideDocumentCommand{\chapterfont}{}{\normalfont \bfseries} %  font indice de contenidos \underline
 \ProvideDocumentCommand{\chapterprefixfont}{}{\normalfont \underline}
 
 % \ProvideDocumentCommand{\chapterprefixfont}{}{
@@ -163,7 +163,7 @@
 %	CLASS OPTIONS
 %----------------------------------------------------------------------------------------
 
-\ifbool{parskip}{\RequirePackage{parskip}} % If the parskip option is passed to the class, require the parskip package 
+\ifbool{parskip}{\RequirePackage{parskip}} % If the parskip option is passed to the class, require the parskip package
 
 
 \ifbool{listtoc}{% If the liststotoc option has been passed to the class, add the lists to the table of contents
@@ -176,10 +176,12 @@
 }
 
 \ifbool{toctoc}{% If the toctotoc options has been passed to the class, add the table of contents to the table of contents
-	\patchcmd{\tableofcontents}{\@starttoc{toc}% 
+	\patchcmd{\tableofcontents}{\@starttoc{toc}%
 }{%
 	\addchaptertocentry{\contentsname}\@starttoc{toc}}{}{}%
 }
+
+
 
 \patchcmd{\tableofcontents}{\MakeUppercase}{\MakeMarkcase}{}{}
 \patchcmd{\tableofcontents}{\MakeUppercase}{\MakeMarkcase}{}{}
@@ -218,6 +220,18 @@
 
 % \RequirePackage{babel} % Required for automatically changing names of document elements to languages besides english // no me funcionó, quitarlo me arregló
 
+% \RequirePackage{etoolbox}
+
+\RequirePackage[titles]{tocloft} % que manera genial de resolver el problema del formato titulos toc lof
+
+\renewcommand\cftfigpresnum{\figurename~}
+\renewcommand\cftfigaftersnum{:}
+\setlength\cftfignumwidth{5.5em}
+
+\renewcommand\cfttabpresnum{Tabla~}
+\renewcommand\cfttabaftersnum{:}
+\setlength\cfttabnumwidth{5.5em}
+
 \RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
 
 \RequirePackage{scrhack} % Loads fixes for various packages
@@ -242,6 +256,11 @@
 
 \RequirePackage{caption} % Required for customising the captions
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=50pt}
+
+% \RequirePackage{indentfirst} % no funcionó
+
+\setlength\parindent{1cm}
+% \setlength{\parindent}{8cm}%
 
 %----------------------------------------------------------------------------------------
 %	DEFINE CUSTOM THESIS INFORMATION COMMANDS
@@ -285,34 +304,42 @@
 % % \ProvideDocumentCommand{\chapterfont}{}{\Huge\bfseries}
 % \ProvideDocumentCommand{\chapterfont}{}{\normalfont \underline} %  font indice de contenidos
 % \ProvideDocumentCommand{\chapterprefixfont}{}{\normalfont \underline}
-
-
+\RequirePackage{indentfirst}
+\RequirePackage{titlesec}
 % esto controla el tamaño de los headers
 \def\sectionfont{\fontsize{12}{12}\selectfont\underline}%
-\def\subsectionfont{\fontsize{12}{12}\selectfont\underline}%
-\def\subsubsectionfont{\fontsize{12}{12}\selectfont\underline}%
-\def\paragraphfont{\fontsize{12}{12}\selectfont}%
+\def\subsectionfont{\fontsize{12}{12}\selectfont}% \underline en vista que no hay mucho consenso sobre los titulos lo saco.
+\def\subsubsectionfont{\fontsize{12}{12}\selectfont\textit}%
+% \def\paragraphfont{\fontsize{20}{20}\selectfont}% esto no esta haciendo nada
 
-\renewcommand\section{\@startsection {section}{1}{\z@}%
-                                     {-26pt \@plus-4pt \@minus-2pt}%
-                                     {12pt}%
-                                     {\sectionfont}}%
-\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-                                     {-26pt \@plus-4pt \@minus-2pt}%
-                                     {12pt}%
-                                     {\subsectionfont}}%
+\renewcommand\section{\@startsection {section}{1}{0pt}%
+                                     {-3.5ex plus -1ex minus -.2ex}%
+                                     {2.3ex plus.2ex}%
+                                     {\noindent\underline}}%
+\renewcommand\subsection{\@startsection{subsection}{2}{0pt}%
+                                     {-3.5ex plus -1ex minus -.2ex}%
+                                     {2.3ex plus.2ex}%
+                                     {\noindent}}%
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-                                     {-26pt \@plus-4pt \@minus-2pt}%
-                                     {12pt}%
-                                     {\subsubsectionfont}}%
-\renewcommand\paragraph{\@startsection{paragraph}{4}{\parindent \z@}% ver lo de parindent para la sangria
-                                     {12pt}%
-                                     {12pt}%
-                                     {\paragraphfont}}%
-\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
-                                      {12pt}%
-                                      {12pt}%
-                                      {\reset@font\normalsize}}%
+                                     {-3.5ex plus -1ex minus -.2ex}%
+                                     {2.3ex plus.2ex}%
+                                     {\noindent\textit}}% c logró
+% \renewcommand\paragraph{\@startsection{paragraph}{4}{\parindent \z@}% ver lo de parindent para la sangria
+%                                      {12pt}%
+%                                      {12pt}%
+%                                      {\paragraphfont}}%
+% \renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent \z@}%
+%                                       {12pt}%
+%                                       {12pt}%
+%                                       {\paragraphfont}}%
+%                                       
+%                                       
+% % Text layout
+% \raggedright % no lo uses que pone el resumen alineado a la izquierda
+% \setlength{\parindent}{0.5cm} % nose por que no funciona esta cuestion ya fue, sobre la sangría, tiene que funcionar la indentation seguir buscando
+
+\RequirePackage{url}
+% \setlength{\emergencystretch}{0pt}
 
 %----------------------------------------------------------------------------------------
 %	COLOURS
@@ -414,7 +441,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 		\tttypeout{\abstractname}
 		\thispagestyle{plain}
 		\begin{center}
-			{\normalsize\underline{\abstractname} \par}
+			{\normalsize\bfseries{\abstractname} \par}% {\normalsize\underline{\abstractname} \par} hasata que pueda ponerle underline a todo
 			\bigskip
 		\end{center}
 	}
@@ -441,7 +468,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 		\tttypeout{\acknowledgementname}
 		\thispagestyle{plain}
 		\begin{center}
-		  {\normalsize\underline{\acknowledgementname} \par}
+		  {\normalsize\bfseries{\acknowledgementname} \par}%{\normalsize\underline{\acknowledgementname} \par}
 		  \bigskip
 		\end{center}
 	}
@@ -517,6 +544,10 @@ pdfstartview={FitV},
 unicode,
 breaklinks=true,
 }
+
+% \RequirePackage{url}
+% \RequirePackage{breakurl}
+% \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 
 \pdfstringdefDisableCommands{% If there is an explicit linebreak in a section heading (or anything printed to the pdf-bookmarks), it is replaced by a space
 	\let\\\space%

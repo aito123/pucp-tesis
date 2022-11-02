@@ -6,7 +6,10 @@ contributes:
     pdf:
       keep-tex: true
       documentclass: MastersDoctoralThesis
-      classoption: ["12pt", "oneside", "spanish", "doublespacing", "headsepline"]
+      # header-includes: |
+      #   \RequirePackage{indentfirst}
+      #   \setlength{\parindent}{0cm} % Default is 15pt. pero afecta tambien a los headers no se por que
+      classoption: ["12pt", "oneside", "spanish", "doublespacing", "headsepline", "parskip"]
       format-resources:
         - MastersDoctoralThesis.cls
       template-partials: 

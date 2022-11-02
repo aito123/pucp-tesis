@@ -9,7 +9,8 @@
   oneside,
   spanish,
   doublespacing,
-  headsepline]{MastersDoctoralThesis}
+  headsepline,
+  parskip]{MastersDoctoralThesis}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -326,7 +327,7 @@ Sociales} % Your faculty's name and URL, this is used in the title page and abst
 \DraftwatermarkOptions{stamp=false} % quitarle la marca de agua a la primera página
 \begin{center}
 
-\vspace*{.06\textheight}
+% \vspace*{.06\textheight}
 {\MakeUppercase{\textbf{PONTIFICIA UNIVERSIDAD \\ CATÓLICA DEL PERÚ}}\par}\vspace{0.25cm} % University name
 \MakeUppercase{\textbf{\facname}}\vspace{0.5cm} % Thesis type
 
@@ -363,6 +364,9 @@ Sociales} % Your faculty's name and URL, this is used in the title page and abst
 
 \begin{acknowledgements}
 \begin{singlespace}
+
+\setlength\parindent{0pt}
+
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
 \input{"Frontmatter/acknowledgements.tex"}
 \end{singlespace}
@@ -375,6 +379,9 @@ Sociales} % Your faculty's name and URL, this is used in the title page and abst
 
 \begin{abstract}
 \begin{singlespace}
+
+\setlength\parindent{0pt}
+
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 {Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis
 accumsan ante. Quisque lorem metus, varius id urna eget, lacinia dapibus
@@ -389,12 +396,33 @@ volutpat.}\vspace{0.3cm}
 
 % 
 
+% para poner en formato la lista de figuras y lista de tablas
+
+% \makeatletter
+% \patchcmd{\@caption}{\csname the#1\endcsname}{\csname fnum@#1\endcsname:}{}{}
+% \renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{4.5em}} % default for 3rd arg: 2.3em
+% \let\l@table\l@figure % as in article.cls
+% \makeatother
+
+% \begin{document}
 \tableofcontents % Prints the main table of contents
 
 \listoffigures % Prints the list of figures
 
-\listoftables % Prints the list of tables
+% {%
+% \let\oldnumberline\numberline%
+% \renewcommand{\numberline}{\figurename~\oldnumberline}%
+% \listoffigures%
+% }
+% 
+% {%
+% \let\oldnumberline\numberline%
+% \renewcommand{\numberline}{Tabla~\oldnumberline}%
+% \listoftables%
+% }
 
+\listoftables % Prints the list of tables
+% \end{document}
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
@@ -425,14 +453,19 @@ volutpat.}\vspace{0.3cm}
 
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
 
-% Define some commands to keep the formatting separated from the content 
+\sloppy %funcionó para los links que no se salgan del párrafo.
+
+% \setlength{\parindent}{8cm}
+
+% \RedeclareSectionCommand[beforeskip=-10pt plus -2pt minus -1pt,afterskip=1sp plus -1sp minus 1sp,font=\normalfont\itshape]{paragraph}
+% \RedeclareSectionCommand[beforeskip=-10pt plus -2pt minus -1pt,afterskip=1sp plus -1sp minus 1sp,font=\normalfont\scshape,indent=0pt]{subparagraph}% Define some commands to keep the formatting separated from the content 
 \newcommand{\keyword}[1]{\textbf{#1}}
 \newcommand{\tabhead}[1]{\textbf{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\file}[1]{\texttt{\bfseries#1}}
 \newcommand{\option}[1]{\texttt{\itshape#1}}
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, frame hidden, sharp corners, boxrule=0pt, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, interior hidden, sharp corners, breakable]}{\end{tcolorbox}}\fi
 
 \bookmarksetup{startatroot}
 
