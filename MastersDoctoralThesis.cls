@@ -63,8 +63,8 @@
 \ProvideDocumentCommand{\mdtChapapp}{}{}
 \ProvideDocumentCommand{\chapteralign}{}{\centering} % align indice de contenidos
 % \ProvideDocumentCommand{\chapterfont}{}{\Huge\bfseries} %cambiar
-\ProvideDocumentCommand{\chapterfont}{}{\normalfont \bfseries} %  font indice de contenidos \underline
-\ProvideDocumentCommand{\chapterprefixfont}{}{\normalfont \underline}
+\ProvideDocumentCommand{\chapterfont}{}{\normalfont \bfseries } %  font indice de contenidos \underline
+\ProvideDocumentCommand{\chapterprefixfont}{}{\normalfont \bfseries }
 
 % \ProvideDocumentCommand{\chapterprefixfont}{}{
 %   \begin{center}
@@ -100,13 +100,44 @@
 %
 
 % chapter head
+% \DeclareDocumentCommand{\@makechapterhead}{ m }{%
+% 	\abovechapterskip
+% 	{\parindent \z@ \chapteralign \normalfont
+% 		\ifnum \c@secnumdepth >\m@ne
+% 		\if@mainmatter
+% 		\ifbool{chapteroneline}{%
+% 			\chapterfont \mdtChapapp\thechapter%\autodot\enspace
+% 		}%
+% 		\fi
+% 		\fi
+% 		\interlinepenalty\@M%
+% 		\chapterfont #1\par\nobreak
+% 		\chapterbelowskip
+% 	}
+% 	\thispagestyle{\chapter@p@gestyle}
+% }
+% \def\@makeschapterhead#1{%
+% 	\abovechapterskip
+% 	{\parindent \z@ \chapteralign
+% 		\normalfont
+% 		\interlinepenalty\@M
+% 		\chapterfont  #1\par\nobreak
+% 		\chapterbelowskip
+% 	}
+% 	\thispagestyle{\chapter@p@gestyle}
+% }
+
 \DeclareDocumentCommand{\@makechapterhead}{ m }{%
 	\abovechapterskip
-	{\parindent \z@ \chapteralign \normalfont
+	{\parindent \z@ \chapteralign \normalfont 
 		\ifnum \c@secnumdepth >\m@ne
 		\if@mainmatter
 		\ifbool{chapteroneline}{%
-			\chapterfont \mdtChapapp\thechapter%\autodot\enspace
+			\mdtChapapp\thechapter\autodot\enspace
+		}{%
+			\chapterprefixfont  \@chapapp \space \thechapter{:} \space % \@chapapp\space %esto era la palabra capitulo
+			% \par\nobreak
+			% \chapterinbetweenskip
 		}%
 		\fi
 		\fi
@@ -126,7 +157,6 @@
 	}
 	\thispagestyle{\chapter@p@gestyle}
 }
-
 
 % Addchap provides unnumbered chapters with an entry in the table of contents as well as an updated header
 \ProvideDocumentCommand{\addchap}{ s o m }{%
@@ -307,7 +337,7 @@
 \RequirePackage{indentfirst}
 \RequirePackage{titlesec}
 % esto controla el tamaño de los headers
-\def\sectionfont{\fontsize{12}{12}\selectfont\underline}%
+\def\sectionfont{\fontsize{12}{12}\selectfont\bfseries}%
 \def\subsectionfont{\fontsize{12}{12}\selectfont}% \underline en vista que no hay mucho consenso sobre los titulos lo saco.
 \def\subsubsectionfont{\fontsize{12}{12}\selectfont\textit}%
 % \def\paragraphfont{\fontsize{20}{20}\selectfont}% esto no esta haciendo nada
@@ -315,15 +345,15 @@
 \renewcommand\section{\@startsection {section}{1}{0pt}%
                                      {-3.5ex plus -1ex minus -.2ex}%
                                      {2.3ex plus.2ex}%
-                                     {\noindent\underline}}%
+                                     {\indent\bfseries}}%
 \renewcommand\subsection{\@startsection{subsection}{2}{0pt}%
                                      {-3.5ex plus -1ex minus -.2ex}%
                                      {2.3ex plus.2ex}%
-                                     {\noindent}}%
+                                     {\indent\indent\bfseries}}%
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {-3.5ex plus -1ex minus -.2ex}%
                                      {2.3ex plus.2ex}%
-                                     {\noindent\textit}}% c logró
+                                     {\indent\indent\indent\bfseries}}% c logró
 % \renewcommand\paragraph{\@startsection{paragraph}{4}{\parindent \z@}% ver lo de parindent para la sangria
 %                                      {12pt}%
 %                                      {12pt}%
